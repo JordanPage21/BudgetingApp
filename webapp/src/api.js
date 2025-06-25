@@ -11,6 +11,24 @@ export function removeJwtToken() {
   localStorage.removeItem('jwtToken');
 }
 
+// Decode JWT payload (without validation)
+function decodeJwt(token) {
+  try {
+    const payload = token.split('.')[1];
+    const decoded = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
+    return decoded;
+  } catch {
+    return null;
+  }
+}
+
+// Get current user info from JWT
+export function getCurrentUser() {
+  const token = getJwtToken();
+  if (!token) return null;
+  return decodeJwt(token);
+}
+
 // Custom fetch with JWT Authorization header
 export async function authFetch(url, options = {}) {
   const token = getJwtToken();

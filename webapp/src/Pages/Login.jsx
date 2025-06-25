@@ -17,7 +17,7 @@ const Login = () => {
     try {
       await login({ username, password });
       setSuccess(true);
-      setTimeout(() => navigate("/dashboard"), 2000);
+      setTimeout(() => navigate("/dashboard"), 1500);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -46,8 +46,7 @@ const Login = () => {
             <a href="#" className="text-sm text-indigo-500 hover:text-sky-400">Forgot Password?</a>
           </div>
           {error && <div className="text-red-500 text-sm mb-4 text-center">{error}</div>}
-          {success && <div className="text-green-600 text-sm mb-4 text-center font-semibold">Login Successful!</div>}
-          <button type="submit" className="w-full bg-sky-400 text-white py-2 rounded-full font-semibold hover:bg-sky-500 transition mb-4" disabled={loading || success}>{loading ? "Logging in..." : "Login"}</button>
+          <button type="submit" className="w-full bg-sky-400 text-white py-2 rounded-full font-semibold hover:bg-sky-500 transition mb-4" disabled={loading || success}>{loading || success ? "Logging in..." : "Login"}</button>
           <div className="text-center text-sm text-slate-800">
             Don't have an account?{' '}
             <Link to="/registration" className="text-indigo-500 hover:text-sky-400 font-medium">Sign up</Link>

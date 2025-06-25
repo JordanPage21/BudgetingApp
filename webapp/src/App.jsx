@@ -7,6 +7,10 @@ import Dashboard from "./Pages/Dashboard";
 import Footer from "./components/Footer";
 import Landing from "./Pages/Landing";
 import { getJwtToken } from "./api";
+import ExpenseManagement from "./Pages/ExpenseManagement";
+import IncomeManagement from "./Pages/IncomeManagement";
+import SavingsPlan from "./Pages/SavingsPlan";
+import BudgetManagement from "./Pages/BudgetManagement";
 
 // Placeholder components for other pages
 const Pricing = () => <div className="min-h-screen flex items-center justify-center text-2xl text-slate-800">Pricing Page Coming Soon</div>;
@@ -27,6 +31,10 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+            <Route path="/expenses" element={<PrivateRoute><ExpenseManagement /></PrivateRoute>} />
+            <Route path="/income" element={<PrivateRoute><IncomeManagement /></PrivateRoute>} />
+            <Route path="/savings" element={<PrivateRoute><SavingsPlan /></PrivateRoute>} />
+            <Route path="/budgets" element={<PrivateRoute><BudgetManagement /></PrivateRoute>} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>

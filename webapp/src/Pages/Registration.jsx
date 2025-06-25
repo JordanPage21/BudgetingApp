@@ -23,7 +23,7 @@ const Registration = () => {
     try {
       await register({ username, password, email });
       setSuccess(true);
-      setTimeout(() => navigate("/dashboard"), 2000);
+      setTimeout(() => navigate("/dashboard"), 1500);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -57,8 +57,7 @@ const Registration = () => {
             <input id="confirmPassword" type="password" placeholder="Confirm password" className="w-full border-b border-slate-200 focus:outline-none focus:border-sky-400 bg-transparent text-slate-800 placeholder-slate-400 py-2" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required disabled={loading || success} />
           </div>
           {error && <div className="text-red-500 text-sm mb-4 text-center">{error}</div>}
-          {success && <div className="text-green-600 text-sm mb-4 text-center font-semibold">Registration Successful!</div>}
-          <button type="submit" className="w-full bg-sky-400 text-white py-2 rounded-full font-semibold hover:bg-sky-500 transition mb-4" disabled={loading || success}>{loading ? "Registering..." : "Register"}</button>
+          <button type="submit" className="w-full bg-sky-400 text-white py-2 rounded-full font-semibold hover:bg-sky-500 transition mb-4" disabled={loading || success}>{loading || success ? "Registering..." : "Register"}</button>
           <div className="text-center text-sm text-slate-800">
             Already have an account?{' '}
             <Link to="/login" className="text-indigo-500 hover:text-sky-400 font-medium">Login</Link>

@@ -96,10 +96,24 @@ const Landing = () => {
     };
   }, [current]);
 
+  useEffect(() => {
+    // Smooth scroll to section if coming from another page
+    const section = sessionStorage.getItem('scrollToSection');
+    if (section) {
+      setTimeout(() => {
+        const el = document.getElementById(section);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+        sessionStorage.removeItem('scrollToSection');
+      }, 100); // slight delay to ensure DOM is ready
+    }
+  }, []);
+
   return (
     <div className="bg-blue-50 min-h-screen flex flex-col">
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-12 px-6" style={{ minHeight: '100vh' }}>
+      <section id="hero" className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-12 px-6" style={{ minHeight: '100vh' }}>
         <div className="flex-1 flex flex-col items-start justify-center py-24">
           <h1 className="text-5xl md:text-7xl font-bold text-slate-800 mb-8 leading-tight">Take Control of Your Finances</h1>
           <p className="text-2xl md:text-3xl text-slate-800 mb-12 max-w-2xl">
@@ -120,6 +134,7 @@ const Landing = () => {
       </section>
       {/* Features Section */}
       <section
+        id="features"
         ref={featuresRef}
         className={`max-w-6xl mx-auto w-full py-12 px-4 transition-opacity duration-1000 ${featuresVisible ? 'opacity-100' : 'opacity-0'}`}
       >
@@ -151,6 +166,7 @@ const Landing = () => {
       </section>
       {/* Pricing Section */}
       <section
+        id="pricing"
         ref={pricingRef}
         className={`max-w-3xl mx-auto w-full py-16 px-4 transition-opacity duration-1000 ${pricingVisible ? 'opacity-100' : 'opacity-0'}`}
       >
